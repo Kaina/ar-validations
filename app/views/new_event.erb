@@ -1,0 +1,11 @@
+<% if @event %>
+    <ul>
+     <% @event.errors.full_messages.each do |message| %>
+      <li><%= message %><li>
+     <% end %>
+    </ul>
+<% end %>
+
+<form id="new-event" action="/events/create" method="POST">
+  <%= erb :_form_fields, layout: false %>
+</form>

@@ -1,11 +1,24 @@
-<% if @event %>
-    <ul>
-     <% @event.errors.full_messages.each do |message| %>
-      <li><%= message %><li>
-     <% end %>
-    </ul>
-<% end %>
-
 <form id="new-event" action="/events/create" method="POST">
-  <%= erb :_form_fields, layout: false %>
+  <% if @event %>
+    <% if @event.errors.any? %>
+      <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+
+  <label for="title">Event Title:</label>
+  <input id="title" type="text" name="event[title]">
+  <br>
+  <label for="organizer_name">Organizer Name:</label>
+  <input id="organizer_name" type="text" name="event[organizer_name]">
+  <br>
+  <label for="organizer_email">Email:</label>
+  <input id="organizer_email" type="text" name="event[organizer_email]">
+  <br>
+  <lable for="date">Event Date:</label>
+  <input id="date" type="date" name="event[date]">
+  <input type="submit">
 </form>

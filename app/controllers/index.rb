@@ -13,10 +13,10 @@ get '/events/new' do
 end
 
 post '/events/create' do
-  @event = Event.create(params[:event])
-  if @event.errors.any?
-    redirect to('/events/new')
-  else
+  @event = Event.new(params[:event])
+  if @event.save
     redirect to('/')
+  else
+    erb :new_event
   end
 end
